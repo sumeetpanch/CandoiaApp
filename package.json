@@ -1,0 +1,24 @@
+{
+  "name": "candoia-app",
+  "productName": "Candoia App",
+  "version": "1.0.0",
+  "description": "Candoia App",
+  "main": "home.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sumeetpanch/CandoiaApp.git"
+  },
+  "author": "Sumeet Panchal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sumeetpanch/CandoiaApp/issues"
+  },
+  "homepage": "https://github.com/sumeetpanch/CandoiaApp#readme",
+  "icon": {
+	"type": "fa",
+	"name": "minus-circle"
+  }
+}
