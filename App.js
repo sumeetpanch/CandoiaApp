@@ -1,8 +1,8 @@
 console.log('hello world');
 
-api.store.put("secretkey", 3425234);
+var results = api.boa.run('boaScript.boa');
+console.log(results);
 
-//var results = api.boa.run('boaScript.boa');
 
 //var results = api.boa.exec("# How many committers are in each project?"+
 //	"p: Project = input;"+
@@ -17,5 +17,3 @@ api.store.put("secretkey", 3425234);
 //	"			counts[p.id] << 1;"+
 //	"		}"+
 //	"});");
-
-console.log(api);

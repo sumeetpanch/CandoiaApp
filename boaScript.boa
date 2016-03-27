@@ -1,13 +1,8 @@
-# How many committers are in each project?
+# What is the layout of the repository?
 p: Project = input;
-counts: output sum[string] of int;
-
-committers: map[string] of bool;
+result: output collection of string;
 
 visit(p, visitor {
-	before node: Revision ->
-		if (!haskey(committers, node.committer.username)) {
-			committers[node.committer.username] = true;
-			counts[p.id] << 1;
-		}
+	before node: ChangeFile ->
+		results << node.name;
 });
