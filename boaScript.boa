@@ -3,6 +3,6 @@ p: Project = input;
 result: output collection of string;
 
 visit(p, visitor {
-	before node: ChangeFile ->
-		results << node.name;
+	before node: ChangedFile ->
+		result << node.name;
 });
