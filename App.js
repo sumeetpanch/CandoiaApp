@@ -14,12 +14,17 @@ function updateTable(node) {
 		for (var i = 0; i < node.children.length; i++){
 			var tr = document.createElement('tr');
 			if (node.children[i].hasChildren){
-				var a = document.createElement('a');
-				a.setAttribute('onclick', "updateTable(" + node.children[i] + ")");
-				//a.addEventListener('click', updateTable(node.children[i]));
-				a.setAttribute('href',"");
-				a.appendChild(document.createTextNode(node.children[i].name));
-				tr.appendChild(a);
+				console.log(node.children[i].name);
+				var button = document.createElement('button');
+				button.innerHTML = node.children[i].name;
+				button.onclick = (function(){
+					passNode = node.children[i];
+					console.log(passNode.name);
+					return function() {
+						updateTable(passNode);
+					}
+				})();
+				tr.appendChild(button);
 			} else {
 				tr.appendChild(document.createTextNode(node.children[i].name));
 			}
@@ -45,7 +50,4 @@ node.children.push(node3);
 
 document.getElementById('title').innerHTML = node.name;
 updateTable(node);
-//var st = ['sad','asdf','ygtrhf','tgv'];
-//updateTable(st);
-//console.log(results);
 console.log('done');
