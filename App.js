@@ -10,6 +10,7 @@ var Table = document.createElement('table');
 
 function updateTable(node) {
 	Table.innerHTML = "";
+	document.getElementById('title').innerHTML = node.name;
 	if (node.children !== undefined){
 		for (var i = 0; i < node.children.length; i++){
 			var tr = document.createElement('tr');
@@ -18,8 +19,9 @@ function updateTable(node) {
 				var button = document.createElement('button');
 				button.innerHTML = node.children[i].name;
 				button.onclick = (function(){
-					passNode = node.children[i];
+					var passNode = node.children[i];
 					console.log(passNode.name);
+					console.log(node.children[i].name);
 					return function() {
 						updateTable(passNode);
 					}
@@ -48,6 +50,13 @@ var node3 = {name:'node3', parent: node, children:[], size:0, hasChildren:false}
 node.children.push(node3);
 
 
-document.getElementById('title').innerHTML = node.name;
 updateTable(node);
+var backButton = document.createElement('button');
+backButton.innerHTML = node.name;
+backButton.onclick = (function(){
+	return function() {
+		updateTable(node);
+	}
+})();
+document.getElementById('back').appendChild(backButton);
 console.log('done');
