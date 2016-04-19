@@ -1,8 +1,8 @@
 console.log('Running');
 
-//var results = api.boa.run('boaScript.boa');
+var results = api.boa.run('boaScript.boa');
 
-//console.log('boa done');
+console.log('boa done');
 
 var node = {name:'node', parent: null, children:[], size:0, hasChildren:false};
 
@@ -11,17 +11,14 @@ var Table = document.createElement('table');
 function updateTable(node) {
 	Table.innerHTML = "";
 	document.getElementById('title').innerHTML = node.name;
-	if (node.children !== undefined){
+	if (node.children !== undefined && node.children.length !== 0){
 		for (var i = 0; i < node.children.length; i++){
 			var tr = document.createElement('tr');
 			if (node.children[i].hasChildren){
-				console.log(node.children[i].name);
 				var button = document.createElement('button');
 				button.innerHTML = node.children[i].name;
 				button.onclick = (function(){
 					var passNode = node.children[i];
-					console.log(passNode.name);
-					console.log(node.children[i].name);
 					return function() {
 						updateTable(passNode);
 					}
@@ -33,6 +30,25 @@ function updateTable(node) {
 			Table.appendChild(tr);
 			document.getElementById('table').appendChild(Table);
 		}
+		var backButton = document.createElement('button');
+		backButton.innerHTML = node.name;
+		backButton.onclick = (function(){
+			if (node.parent !== null) {
+				var pastNode = node.parent;
+			} else {
+				var pastNode = node;
+			}
+			return function() {
+				updateTable(pastNode);
+			}
+		})();
+		document.getElementById('back').innerHTML = "";
+		document.getElementById('back').appendChild(backButton);
+	} else {
+		var tr = document.createElement('tr');
+		tr.appendChild(document.createTextNode("Error! No Children in this node!"));
+		Table.appendChild(tr);
+		document.getElementById('table').appendChild(Table);
 	}
 }
 
@@ -51,12 +67,4 @@ node.children.push(node3);
 
 
 updateTable(node);
-var backButton = document.createElement('button');
-backButton.innerHTML = node.name;
-backButton.onclick = (function(){
-	return function() {
-		updateTable(node);
-	}
-})();
-document.getElementById('back').appendChild(backButton);
 console.log('done');
