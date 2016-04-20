@@ -1,8 +1,9 @@
 # What is the layout of the repository?
 p: Project = input;
-result: output collection of string;
+out: output collection of string;
 
 visit(p, visitor {
-	before node: ChangedFile ->
-		result << node.name;
+	before nd: ChangedFile ->
+		out << nd.name;
+
 });

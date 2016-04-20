@@ -1,8 +1,8 @@
 {
-  "name": "candoia-app",
-  "productName": "Candoia App",
+  "name": "repository-explorer",
+  "productName": "Repository Explorer",
   "version": "1.0.0",
-  "description": "Candoia App",
+  "description": "Provides a repository explorer that displays all files and folders in the repository.",
   "main": "home.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,6 @@
   "homepage": "https://github.com/sumeetpanch/CandoiaApp#readme",
   "icon": {
 	"type": "fa",
-	"name": "minus-circle"
+	"name": "search"
   }
 }
