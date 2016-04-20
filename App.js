@@ -3,6 +3,7 @@ console.log('Running');
 var results = api.boa.run('boaScript.boa');
 console.log(results);
 var files = results["out"]["[]"];
+files.sort();
 console.log(files);
 
 var nodeNameArr = [];
@@ -10,8 +11,8 @@ var nodeArr = [];
 var node = {name: "root", parent: null, children:[], size:0, hasChildren:false};
 
 function createTree() {
-	var parentNode = node;
 	for (var i = 0; i < files.length; i++) {
+	var parentNode = node;
 		if (nodeNameArr.indexOf(files[i]) === -1){
 			nodeNameArr.push(files[i]);
 			var nameArr = files[i].split("/");
@@ -72,11 +73,12 @@ function updateTable(node) {
 				})();
 				tr.appendChild(button);
 				folderCount++;
+				Table.insertBefore(tr, Table.firstChild);
 			} else {
 				itemCount++;
 				tr.appendChild(document.createTextNode(node.children[i].name));
+				Table.appendChild(tr);
 			}
-			Table.appendChild(tr);
 			document.getElementById('table').appendChild(Table);
 		}
 		if (folderCount === 1) {
